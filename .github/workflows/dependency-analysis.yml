@@ -1,0 +1,28 @@
+name: Dependency Analysis
+
+on:
+  push:
+    paths:
+      - 'src/main/java/com/example/product/**/*.java'
+  pull_request:
+    paths:
+      - 'src/main/java/com/example/product/**/*.java'
+
+jobs:
+  analyze_deps:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+      - name: Install javalang
+        run: pip install javalang
+      - name: Run Dependency Analyzer
+        run: python dependency_analyzer.py
+      - name: Upload HTML Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dependency-analysis-report
+          path: dependency_report.html
