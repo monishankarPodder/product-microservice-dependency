@@ -152,6 +152,10 @@ def find_dependents(methods, inv_graph):
     return visited
 
 #  SMART TEST CASE MATCHING: TOKEN BASED
+def split_camel_case(name):
+    # Split camelCase or PascalCase into individual lowercase words
+    return [token.lower() for token in re.findall(r'[A-Z]?[a-z]+|[A-Z]+(?=[A-Z]|$)', name)]
+
 def find_testcases(methods, testcases):
     matched = []
     norm_method_tokens = set()
@@ -159,9 +163,8 @@ def find_testcases(methods, testcases):
     print("🔍 Matching test cases with method tokens...")
 
     for m in methods:
-        print(f"⚙️ Tokenizing method: {m}")
-        tokens = re.findall(r'[a-z]+', m.lower())
-        print(f" ➤ Extracted tokens: {tokens}")
+        tokens = split_camel_case(m)
+        print(f"⚙️ Tokenizing method: {m} ➤ Extracted tokens: {tokens}")
         norm_method_tokens.update(tokens)
 
     print(f"All method tokens to match: {norm_method_tokens}")
@@ -177,6 +180,7 @@ def find_testcases(methods, testcases):
         else:
             print(" ❌ No match.")
     return matched
+
 
 
 
