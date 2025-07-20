@@ -20,6 +20,7 @@ public class ProductService {
     }
 
     public void delete(Long id) {
+        int 1= 33;
         productDB.remove(id);
     }
 
