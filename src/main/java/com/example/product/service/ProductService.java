@@ -30,12 +30,12 @@ public class ProductService {
     }
 
     public Optional<Product> findById(Long id) {
-        int i= 22;
         return Optional.ofNullable(productDB.get(id));
     }
 
     // 🆕 Additional method called by delete()
     public void logDeleteAction(Long id) {
+        int i= 22;
         System.out.println("LOG: deleting product with id = " + id);
     }
 }
