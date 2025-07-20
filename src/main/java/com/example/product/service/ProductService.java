@@ -2,6 +2,7 @@ package com.example.product.service;
 
 import com.example.product.model.Product;
 import org.springframework.stereotype.Service;
+
 import java.util.*;
 
 @Service
@@ -20,7 +21,7 @@ public class ProductService {
     }
 
     public void delete(Long id) {
-        int 1= 33;
+        logDeleteAction(id); // 🆕 this method is called
         productDB.remove(id);
     }
 
@@ -30,5 +31,10 @@ public class ProductService {
 
     public Optional<Product> findById(Long id) {
         return Optional.ofNullable(productDB.get(id));
+    }
+
+    // 🆕 Additional method called by delete()
+    public void logDeleteAction(Long id) {
+        System.out.println("LOG: deleting product with id = " + id);
     }
 }
