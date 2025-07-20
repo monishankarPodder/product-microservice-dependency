@@ -151,20 +151,23 @@ def find_dependents(methods, inv_graph):
                 stack.append(parent)
     return visited
 
-# ✅ SMART TEST CASE MATCHING: TOKEN BASED
+#  SMART TEST CASE MATCHING: TOKEN BASED
 def find_testcases(methods, testcases):
     matched = []
     norm_method_tokens = set()
+
+    # Split method names into parts: e.g., deleteProduct → [delete, product]
     for m in methods:
         norm_method_tokens.update(re.findall(r'[a-z]+', m.lower()))
 
     for tc in testcases:
-        name = tc['name'].lower()
-        name_tokens = re.findall(r'\w+', name)
-        if any(token in name_tokens for token in norm_method_tokens):
-            matched.append(tc)
-
+        name = tc["name"].lower()
+        for token in norm_method_tokens:
+            if token in name:
+                matched.append(tc)
+                break
     return matched
+
 
 # HTML RENDER HELPERS
 def render_list(items):
