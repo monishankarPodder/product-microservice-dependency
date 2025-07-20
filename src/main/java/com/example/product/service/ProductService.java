@@ -35,7 +35,7 @@ public class ProductService {
 
     // 🆕 Additional method called by delete()
     public void logDeleteAction(Long id) {
-        int i= 8849;
+        int i= 749;
         System.out.println("LOG: deleting product with id = " + id);
     }
 }
