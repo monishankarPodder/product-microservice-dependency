@@ -1,0 +1,6 @@
+[
+  { "name": "Validate product creation", "folder": "Product Service", "id": "TC-101" },
+  { "name": "Test product deletion", "folder": "Product Service", "id": "TC-102" },
+  { "name": "Test product removal", "folder": "Product Service", "id": "TC-106" },
+  { "name": "ORDER Checkout", "folder": "Order Service", "id": "TC-104" }
+]
