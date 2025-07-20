@@ -156,17 +156,28 @@ def find_testcases(methods, testcases):
     matched = []
     norm_method_tokens = set()
 
-    # Split method names into parts: e.g., deleteProduct → [delete, product]
+    print("🔍 Matching test cases with method tokens...")
+
     for m in methods:
-        norm_method_tokens.update(re.findall(r'[a-z]+', m.lower()))
+        print(f"⚙️ Tokenizing method: {m}")
+        tokens = re.findall(r'[a-z]+', m.lower())
+        print(f" ➤ Extracted tokens: {tokens}")
+        norm_method_tokens.update(tokens)
+
+    print(f"All method tokens to match: {norm_method_tokens}")
 
     for tc in testcases:
         name = tc["name"].lower()
+        print(f"🔎 Checking test case: {tc['id']} - {tc['name']}")
         for token in norm_method_tokens:
             if token in name:
+                print(f" ✅ MATCHED on token: {token}")
                 matched.append(tc)
                 break
+        else:
+            print(" ❌ No match.")
     return matched
+
 
 
 # HTML RENDER HELPERS
