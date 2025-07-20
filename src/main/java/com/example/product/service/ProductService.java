@@ -30,6 +30,7 @@ public class ProductService {
     }
 
     public Optional<Product> findById(Long id) {
+        int i= 22;
         return Optional.ofNullable(productDB.get(id));
     }
 
